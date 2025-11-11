@@ -1,0 +1,64 @@
+version: "1"
+
+package:
+  id: io.typora.stable
+  name: Typora
+  version: 1.12.2.1
+  kind: app
+  description: |
+    Typora is a well-known mark-down editor,this is Linux official version
+
+base: org.deepin.base/25.2.1
+runtime:
+##Add GTK3 & GTK4 Fcitx5-Frontend
+command:
+  - "/opt/apps/io.typora.stable/files/bin/io.typora.stable"
+
+sources:
+    - kind: file
+      url: https://downloads.typoraio.cn/linux/typora_1.12.2_arm64.deb
+      digest: 6ebf649f73f83f36de7fabb9f3561c5fc734ba207f735a4aa86a202d7decaeec
+
+build: |
+    ## 环境设置
+    set -x
+    export PATH=$PATH:/usr/libexec/linglong/builder/helper
+    # 设置工作目录
+    SOURCES="linglong/app-sources"
+    # 设置启动二进制文件名称
+    BINNAME=${LINGLONG_APPID}
+    # 进入工作目录
+    cd ${SOURCES}
+    
+    # 清理多余目录
+    rm -rf deb ${LINGLONG_APPID}
+    
+    # 将deb挪过来并进行解压
+    mv ../sources/*.deb target.deb
+    dpkg-deb -R target.deb deb
+
+    # 进入应用本体目录将其拷贝出来
+    mv deb/usr/share/typora ${LINGLONG_APPID}
+    # 删除多余的deb目录
+    rm -rf deb
+    # 进入应用目录
+    cd ${LINGLONG_APPID}
+    # deb包不需要拷贝必需libs库,故跳过
+    # cp -a usr/lib/* ../libs
+
+    # 退出应用本体目录
+    cd ..
+    # 删除多余的deb文件
+    rm -f target.deb
+
+    # 写入启动脚本
+    echo "#!/bin/bash" > bin/${BINNAME}
+    echo "exec \"${PREFIX}/${LINGLONG_APPID}/Typora\" \"\$@\"" >> bin/${BINNAME}
+
+    # 修改启动权限
+    chmod +x bin/*
+
+    #进行安装
+    cp -a bin $PREFIX
+    cp -a ${LINGLONG_APPID} $PREFIX
+    cp -a share $PREFIX

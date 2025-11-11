@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Typora
+Comment=A minimal Markdown reading & writing app
+Comment[zh_CN]=一个简洁轻快的Markdown编辑器
+GenericName=Markdown Editor
+Exec=/opt/apps/io.typora.stable/files/bin/io.typora.stable %F
+Icon=typora
+Categories=Office;WordProcessor;
+MimeType=text/markdown;text/x-markdown;
+
