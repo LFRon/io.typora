@@ -3,7 +3,7 @@ version: "1"
 package:
   id: io.typora.stable
   name: Typora
-  version: 1.12.2.1
+  version: 1.12.4.0
   kind: app
   description: |
     Typora is a well-known mark-down editor,this is Linux official version
@@ -16,8 +16,8 @@ command:
 
 sources:
     - kind: file
-      url: https://downloads.typoraio.cn/linux/typora_1.12.2_arm64.deb
-      digest: 6ebf649f73f83f36de7fabb9f3561c5fc734ba207f735a4aa86a202d7decaeec
+      url: https://downloads.typoraio.cn/linux/typora_1.12.4_arm64.deb
+      digest: b50142a6939e79624af28bdfef52cf25156d78e27c5db6cda23855e102e6549d
 
 build: |
     ## 环境设置
@@ -31,7 +31,7 @@ build: |
     cd ${SOURCES}
     
     # 清理多余目录
-    rm -rf deb ${LINGLONG_APPID}
+    rm -rf deb ${LINGLONG_APPID} target.deb
     
     # 将deb挪过来并进行解压
     mv ../sources/*.deb target.deb
@@ -39,15 +39,10 @@ build: |
 
     # 进入应用本体目录将其拷贝出来
     mv deb/usr/share/typora ${LINGLONG_APPID}
+
     # 删除多余的deb目录
     rm -rf deb
-    # 进入应用目录
-    cd ${LINGLONG_APPID}
-    # deb包不需要拷贝必需libs库,故跳过
-    # cp -a usr/lib/* ../libs
 
-    # 退出应用本体目录
-    cd ..
     # 删除多余的deb文件
     rm -f target.deb
 
