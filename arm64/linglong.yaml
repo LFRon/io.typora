@@ -3,12 +3,12 @@ version: "1"
 package:
   id: io.typora.stable
   name: Typora
-  version: 1.12.4.0
+  version: 1.12.4.1
   kind: app
   description: |
     Typora is a well-known mark-down editor,this is Linux official version
 
-base: org.deepin.base/25.2.1
+base: org.deepin.base/25.2.2
 runtime:
 ##Add GTK3 & GTK4 Fcitx5-Frontend
 command:
