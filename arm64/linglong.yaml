@@ -3,7 +3,7 @@ version: "1"
 package:
   id: io.typora.stable
   name: Typora
-  version: 1.12.4.1
+  version: 1.14.9.0
   kind: app
   description: |
     Typora is a well-known mark-down editor,this is Linux official version
@@ -16,8 +16,8 @@ command:
 
 sources:
     - kind: file
-      url: https://downloads.typoraio.cn/linux/typora_1.12.4_arm64.deb
-      digest: b50142a6939e79624af28bdfef52cf25156d78e27c5db6cda23855e102e6549d
+      url: https://downloads.typoraio.cn/linux/typora_1.14.9_arm64.deb
+      digest: 4574902b011f7d371680547f3f4e1427f7b8d66af6e9819c182d9bc8dc86002c
 
 build: |
     ## 环境设置

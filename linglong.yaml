@@ -3,21 +3,21 @@ version: "1"
 package:
   id: io.typora.stable
   name: Typora
-  version: 1.12.6.2
+  version: 1.14.9.0
   kind: app
   description: |
     Typora is a well-known mark-down editor,this is Linux official version
 
 base: org.deepin.base/25.2.2
-runtime:
+runtime: null
 ##Add GTK3 & GTK4 Fcitx5-Frontend
 command:
   - "/opt/apps/io.typora.stable/files/bin/io.typora.stable"
 
 sources:
     - kind: file
-      url: https://downloads.typoraio.cn/linux/typora_1.12.4_amd64.deb
-      digest: 3f7c20ccc55ccaf99733fc36e243e060639f49a021f9217381ea09a1ab04987f
+      url: https://downloads.typora.io/linux/typora_1.14.9_amd64.deb
+      digest: 8885207cf9e2daeda2592fda9dcb05c12d6b5c4665a2a055a50e654800e633ea
 
 build: |
     ## 环境设置
